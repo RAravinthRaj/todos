@@ -41,26 +41,7 @@ function renderTask(text, completed) {
 
   const editBtn = document.createElement("button");
   editBtn.innerHTML = "✏️";
-  editBtn.onclick = () => {
-    const editInput = document.createElement("input");
-    editInput.className = "edit-input";
-    editInput.value = span.textContent;
-
-    const saveBtn = document.createElement("button");
-    saveBtn.innerHTML = "💾";
-    saveBtn.onclick = () => {
-      span.textContent = editInput.value.trim();
-      li.replaceChild(left, editInput);
-      saveTasks();
-    };
-
-    left.innerHTML = "";
-    left.appendChild(checkbox);
-    left.appendChild(editInput);
-    actions.innerHTML = "";
-    actions.appendChild(saveBtn);
-    actions.appendChild(deleteBtn);
-  };
+  editBtn.onclick = () => enterEditMode();
 
   const deleteBtn = document.createElement("button");
   deleteBtn.innerHTML = "🗑️";
@@ -75,6 +56,37 @@ function renderTask(text, completed) {
   li.appendChild(left);
   li.appendChild(actions);
   list.appendChild(li);
+
+  function enterEditMode() {
+    const editInput = document.createElement("input");
+    editInput.className = "edit-input";
+    editInput.value = span.textContent;
+
+    const saveBtn = document.createElement("button");
+    saveBtn.innerHTML = "💾";
+    saveBtn.onclick = () => {
+      const newText = editInput.value.trim();
+      if (newText) {
+        span.textContent = newText;
+        exitEditMode();
+        saveTasks();
+      } else {
+        alert("Task cannot be empty");
+      }
+    };
+
+    left.replaceChild(editInput, span);
+    actions.innerHTML = "";
+    actions.appendChild(saveBtn);
+    actions.appendChild(deleteBtn);
+  }
+
+  function exitEditMode() {
+    left.replaceChild(span, left.querySelector(".edit-input"));
+    actions.innerHTML = "";
+    actions.appendChild(editBtn);
+    actions.appendChild(deleteBtn);
+  }
 }
 
 function saveTasks() {
