@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo App</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+
+      .container {
+        background: white;
+        width: 100%;
+        max-width: 500px;
+        padding: 25px 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .todo-input {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .todo-input input {
+        flex: 1;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
+
+      .todo-input button {
+        padding: 10px 15px;
+        border: none;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .todo-input button:hover {
+        background-color: #45a049;
+      }
+
+      #taskList {
+        list-style: none;
+      }
+
+      .task-item {
+        padding: 12px;
+        background-color: #f9f9f9;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s;
+      }
+
+      .task-item.completed {
+        text-decoration: line-through;
+        color: gray;
+        background-color: #e0e0e0;
+      }
+
+      .task-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex: 1;
+      }
+
+      .task-left input[type="checkbox"] {
+        transform: scale(1.2);
+      }
+
+      .task-actions button {
+        border: none;
+        background: none;
+        font-size: 18px;
+        margin-left: 8px;
+        cursor: pointer;
+        transition: color 0.3s;
+      }
+
+      .task-actions button:hover {
+        color: #333;
+      }
+
+      .edit-input {
+        flex: 1;
+        padding: 6px;
+        font-size: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>📝 My ToDo List</h1>
+      <div class="todo-input">
+        <input type="text" id="taskInput" placeholder="Add a new task..." />
+        <button onclick="addTask()">➕</button>
+      </div>
+      <ul id="taskList"></ul>
+    </div>
+  </body>
+</html>
